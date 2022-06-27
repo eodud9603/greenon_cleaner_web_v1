@@ -7,7 +7,7 @@ export type ModalType =
 | "controlMove"
 | "controlPower"
 | "controlMode"
-| "controlTime"
+| "controlAirVolume"
 | "controlOption"
 | "infoDevice"
 | "updateDevice"

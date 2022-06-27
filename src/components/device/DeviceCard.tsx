@@ -33,7 +33,7 @@ const DeviceCard = ({ device }: { device: DeviceType }) => {
       default: return '-';
     }
   }, []);
-  
+
   return (
     <DeviceCardBox to={`/devices/${device.id}`}>
       <div
@@ -54,10 +54,10 @@ const DeviceCard = ({ device }: { device: DeviceType }) => {
             <label>수위</label>
             <p style={{ marginLeft: 10 }}>{getLevel(device.water_level)}</p>
           </Space>
-          <Space>
-            <label>약품</label>
-            <p style={{ marginLeft: 10 }}>{getLevel(device.chemical_level)}</p>
-          </Space>
+          {/*<Space>*/}
+          {/*  <label>약품</label>*/}
+          {/*  <p style={{ marginLeft: 10 }}>{getLevel(device.chemical_level)}</p>*/}
+          {/*</Space>*/}
         </Space>
       </div>
       <DeviceCardGrid device={device} />

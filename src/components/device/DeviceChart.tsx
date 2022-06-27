@@ -135,14 +135,14 @@ const DeviceChart = ({ id }: { id:string }) => {
         >
           공기질지수
         </Button>
-        <Button
-          name="food_poisoning"
-          active={active.sensor === "food_poisoning"}
-          onClick={handleClick}
-          // style={{ marginRight: 5 }}
-        >
-          식중독지수
-        </Button>
+        {/*<Button*/}
+        {/*  name="food_poisoning"*/}
+        {/*  active={active.sensor === "food_poisoning"}*/}
+        {/*  onClick={handleClick}*/}
+        {/*  // style={{ marginRight: 5 }}*/}
+        {/*>*/}
+        {/*  식중독지수*/}
+        {/*</Button>*/}
         <Button
           name="particulate_matter"
           active={active.sensor === "particulate_matter"}
@@ -150,34 +150,34 @@ const DeviceChart = ({ id }: { id:string }) => {
         >
           미세먼지지수(PM2.5)
         </Button>
-        <Button
-            name="hydrogen_sulfide"
-            active={active.sensor === "hydrogen_sulfide"}
-            onClick={handleClick}
-        >
-          황화수소
-        </Button>
-        <Button
-            name="ammonia"
-            active={active.sensor === "ammonia"}
-            onClick={handleClick}
-        >
-          암모니아
-        </Button>
-        <Button
-            name="voc"
-            active={active.sensor === "voc"}
-            onClick={handleClick}
-        >
-          VOC
-        </Button>
-        <Button
-            name="co2"
-            active={active.sensor === "co2"}
-            onClick={handleClick}
-        >
-          CO2
-        </Button>
+        {/*<Button*/}
+        {/*    name="hydrogen_sulfide"*/}
+        {/*    active={active.sensor === "hydrogen_sulfide"}*/}
+        {/*    onClick={handleClick}*/}
+        {/*>*/}
+        {/*  황화수소*/}
+        {/*</Button>*/}
+        {/*<Button*/}
+        {/*    name="ammonia"*/}
+        {/*    active={active.sensor === "ammonia"}*/}
+        {/*    onClick={handleClick}*/}
+        {/*>*/}
+        {/*  암모니아*/}
+        {/*</Button>*/}
+        {/*<Button*/}
+        {/*    name="voc"*/}
+        {/*    active={active.sensor === "voc"}*/}
+        {/*    onClick={handleClick}*/}
+        {/*>*/}
+        {/*  VOC*/}
+        {/*</Button>*/}
+        {/*<Button*/}
+        {/*    name="co2"*/}
+        {/*    active={active.sensor === "co2"}*/}
+        {/*    onClick={handleClick}*/}
+        {/*>*/}
+        {/*  CO2*/}
+        {/*</Button>*/}
       </ButtonGroup>
       <ButtonGroup>
         <Button

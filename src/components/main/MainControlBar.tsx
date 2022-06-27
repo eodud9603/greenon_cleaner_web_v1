@@ -60,8 +60,8 @@ const MainControlBar = () => {
           style={{ display: "block", width: 16 }}
         />
       </SortButton>
-      <Button onClick={() => setModal({ ...modal, visible: true, type: 'controlDevice' })}>전체 제어</Button>
-      <Button onClick={() => setModal({ ...modal, visible: true, type: 'controlMove' })}>동작 제어</Button>
+      {/*<Button onClick={() => setModal({ ...modal, visible: true, type: 'controlDevice' })}>전체 제어</Button>*/}
+      <Button style={{flex:1,marginLeft:15,marginRight:15}} onClick={() => setModal({ ...modal, visible: true, type: 'controlMove' })}>동작 제어</Button>
       <Space>
         <strong>{deviceList.length}</strong>
         <p style={{ marginLeft: 5 }}>연결됨</p>

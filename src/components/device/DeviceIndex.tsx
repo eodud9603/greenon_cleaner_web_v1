@@ -17,6 +17,12 @@ const Box = styled.div`
   padding-bottom: 20px;
 `;
 
+const ContainerRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const Row = styled.div`
   display: flex;
   align-items: center;
@@ -39,7 +45,7 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
 
   return (
     <Box>
-      <Row>
+      <ContainerRow>
         <CircularProgress
           onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"바이오에어로졸지수"}})}
           title="바이오에어로졸지수"
@@ -48,6 +54,7 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
           color={data.bio_aerosol <= 32.5 ? '#00c4ff' : data.bio_aerosol <= 45.5 ? '#00baba' : data.bio_aerosol <= 68 ? '#ffc400' : 68 < data.bio_aerosol && '#ff0000'}
           text={data.bio_aerosol <= 32.5 ? '좋음' : data.bio_aerosol <= 45.5 ? '보통' : data.bio_aerosol <= 68 ? '나쁨' : 68 <  data.bio_aerosol && '매우나쁨'}
         />
+        <div style={{width:20}}/>
         <CircularProgress
             onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"공기질지수"}})}
           title="공기질지수"
@@ -56,14 +63,14 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
           text={data.air_quality <= 50 ? '좋음' : data.air_quality <= 100 ? '보통' : data.air_quality <= 250 ? '나쁨' : 250 < data.air_quality && '매우나쁨'}
         />
         {/*00baba*/}
-        <CircularProgress
-            onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"식중독지수"}})}
-          title="식중독지수"
-          progress={data.food_poisoning}
-          color={data.food_poisoning <= 55 ? '#00c4ff' : data.food_poisoning <= 71 ? '#00baba' : data.food_poisoning <= 86 ? '#ffc400' : 86 < data.food_poisoning  && '#ff0000'}
-          text={data.food_poisoning <= 55 ? '좋음' : data.food_poisoning <= 71 ? '보통' : data.food_poisoning <= 86 ? '나쁨' : 86 < data.food_poisoning && '매우나쁨'}
-        />
-      </Row>
+        {/*<CircularProgress*/}
+        {/*    onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"식중독지수"}})}*/}
+        {/*  title="식중독지수"*/}
+        {/*  progress={data.food_poisoning}*/}
+        {/*  color={data.food_poisoning <= 55 ? '#00c4ff' : data.food_poisoning <= 71 ? '#00baba' : data.food_poisoning <= 86 ? '#ffc400' : 86 < data.food_poisoning  && '#ff0000'}*/}
+        {/*  text={data.food_poisoning <= 55 ? '좋음' : data.food_poisoning <= 71 ? '보통' : data.food_poisoning <= 86 ? '나쁨' : 86 < data.food_poisoning && '매우나쁨'}*/}
+        {/*/>*/}
+      </ContainerRow>
       <Row>
         <InlineRow>
           <Icon1 />

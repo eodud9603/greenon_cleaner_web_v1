@@ -11,7 +11,7 @@ const ControlMove = () => {
   const user = useRecoilValue(UserState);
   const setToast = useSetRecoilState(ToastState);
   const [deviceList, setDeviceList] = useRecoilState(DeviceState);
-  
+
   const [open, setOpen] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
 
@@ -37,9 +37,9 @@ const ControlMove = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const onClickRmAreaBacteria = async (mode_time:number) => {
+  const onClickMode = async (mode_time:number) => {
     if (!user) return;
-    
+
     let temp = deviceList.map(d => ({ ...d }));
 
     for (let i = 0; i < temp.length; i++) {
@@ -47,38 +47,39 @@ const ControlMove = () => {
       if (temp[i].mode === 99 || temp[i].mode_time === mode_time) {
         continue;
       }
-      
-      await apis.controlDevice(temp[i].id, user.id, { mode: 1, mode_time }).then(({ data }) => {
-        if (data.includes('mode') && data.includes('mode_time')) {
+
+      await apis.controlDevice(temp[i].id, user.id, { mode: 1, mode_time, air_quality: 1 }).then(({ data }) => {
+        if (data.includes('mode') && data.includes('mode_time') && data.includes('air_quality')) {
           temp[i].mode = 99;
           temp[i].mode_time = 99;
+          temp[i].air_quality = 99;
         }
       });
     }
-    
+
     setDeviceList(temp);
     setToast({ open: true, message: '전체 디바이스에 명령이 전달되었습니다.', type: 'info' })
   }
-  
-  const onClickPestControl = async (mode_time:number) => {
+
+  const onClickAirControl = async (air_volume:number) => {
     if (!user) return;
-    
+
     let temp = deviceList.map(d => ({ ...d }));
 
     for (let i = 0; i < temp.length; i++) {
 
-      if (temp[i].mode === 99 || temp[i].mode_time === mode_time) {
+      if (temp[i].air_quality === 99 || temp[i].air_volume === air_volume) {
         continue;
       }
-      
-      await apis.controlDevice(temp[i].id, user.id, { mode: 2, mode_time }).then(({ data }) => {
-        if (data.includes('mode') && data.includes('mode_time')) {
-          temp[i].mode = 99;
-          temp[i].mode_time = 99;
+
+      await apis.controlDevice(temp[i].id, user.id, { air_quality: 1, air_volume }).then(({ data }) => {
+        if (data.includes('air_quality') && data.includes('air_volume')) {
+          temp[i].air_quality = 99;
+          temp[i].air_volume = 99;
         }
       });
     }
-    
+
     setDeviceList(temp);
     setToast({ open: true, message: '전체 디바이스에 명령이 전달되었습니다.', type: 'info' })
   }
@@ -86,41 +87,36 @@ const ControlMove = () => {
   return (
     <>
       <ColBox>
-        공간 제균
+        제균
         <div className="option-list">
           <Button
             variant="text"
-            onClick={() => onClickRmAreaBacteria(1)}
+            onClick={() => onClickMode(1)}
           >
             1시간
           </Button>
           <Button
             variant="text"
-            onClick={() => onClickRmAreaBacteria(2)}
+            onClick={() => onClickMode(2)}
           >
             2시간
           </Button>
           <Button
-            variant="text"
-            onClick={() => onClickRmAreaBacteria(0)}
+              variant="text"
+              onClick={() => onClickMode(0)}
           >
             연속
-          </Button>
-          <Button
-            variant="text"
-            onClick={() => onClickRmAreaBacteria(-1)}
-          >
-            수동
           </Button>
         </div>
       </ColBox>
       <ColBox>
-        해충방제
+        풍량
         <div className="option-list">
-          <Button onClick={() => onClickPestControl(1)}>1시간</Button>
-          <Button onClick={() => onClickPestControl(2)}>2시간</Button>
-          <Button onClick={() => onClickPestControl(0)}>연속</Button>
-          <Button onClick={() => onClickPestControl(-1)}>수동</Button>
+          <Button onClick={() => onClickAirControl(0)}>상시</Button>
+          <Button onClick={() => onClickAirControl(1)}>강</Button>
+          <Button onClick={() => onClickAirControl(2)}>쾌속</Button>
+          <Button onClick={() => onClickAirControl(1)}>공기질</Button>
+          {/*<Button onClick={() => onClickPestControl(-1)}>수동</Button>*/}
         </div>
       </ColBox>
       <Snackbar

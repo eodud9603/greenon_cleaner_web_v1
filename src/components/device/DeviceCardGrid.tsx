@@ -51,14 +51,15 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
 
   function formatMode(mode:number) {
     switch (mode) {
-      case 1: return "공간제균";
-      case 2: return "해충방제";
+      case 0: return "꺼짐";
+      case 1: return "연속";
+      case 2: return "1시간";
+      case 3: return "2시간";
     }
   }
 
-  function formatModeTime(mode_time:number) {
-    switch (mode_time) {
-      case -1: return "수동";
+  function formatAirVolume(air_volume:number) {
+    switch (air_volume) {
       case 0: return "연속";
       case 1: return "1시간";
       case 2: return "2시간";
@@ -70,6 +71,9 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
       setModal({ ...modal, targetDeviceId: device.id, visible: true, type });
   }
 
+  useEffect(() => {
+      console.log('device :: ',device)
+  },[])
   return (
     <Grid>
       <GridItem style={{ marginBottom: 20 }}>
@@ -110,31 +114,31 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
         </Button>
       </GridItem>
       <GridItem>
-        <label>모드</label>
+        <label>제균</label>
         <Button
           name="controlMode"
           onClick={(e) => {
             e.preventDefault();
-            if (device.power === 0 || device.mode === 99) return;
+            if (device.power === 0 || device.mode === 99 || device.mode_time === 99) return;
             handleOpenModal('controlMode', device.mode);
           }}
           red={device.power === 1 ? "false" : "true"}
         >
-          {device.mode === 99 ? 'pending...' : formatMode(device.mode)}
+          {device.mode === 99 || device.mode_time === 99 ? 'pending...' : formatMode(device.mode+device.mode_time)}
         </Button>
       </GridItem>
       <GridItem style={{ marginLeft: 8 }}>
-        <label>시간</label>
+        <label>풍량</label>
         <Button
-          name="controlTime"
+          name="controlAirVolume"
           onClick={(e) => {
             e.preventDefault();
-            if (device.power === 0 || device.mode_time === 99) return;
-            handleOpenModal('controlTime', device.mode_time);
+            if (device.power === 0 || device.air_volume === 99) return;
+            handleOpenModal('controlAirVolume', device.air_volume);
           }}
           red={device.power === 1 ? "false" : "true"}
         >
-          {device.mode_time === 99 ? 'pending...' : formatModeTime(device.mode_time)}
+          {device.air_volume === 99 ? 'pending...' : formatAirVolume(device.air_volume)}
         </Button>
       </GridItem>
     </Grid>

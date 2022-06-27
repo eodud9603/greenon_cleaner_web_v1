@@ -67,12 +67,23 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
       }
     });
   }
-  const onClickIsWorking = (is_working: number) => {
-    if (!user || data.is_working === 99) return;
-    apis.controlDevice(data.id, user.id, { is_working }).then(({ data }) => {
-      if (data.includes('is_working')) {
+
+  const onClickAirVolume = (air_volume: number) => {
+    if (!user || data.air_volume === 99) return;
+    apis.controlDevice(data.id, user.id, { air_volume }).then(({ data }) => {
+      if (data.includes('air_volume')) {
         setDeviceList(deviceList.map(d => {
-          return { ...d, ...(d.id === deviceId && { is_working: 99 }) };
+          return { ...d, ...(d.id === deviceId && { air_volume: 99 }) };
+        }));
+      }
+    });
+  }
+  const onClickAirQuality = (air_quality: number) => {
+    if (!user || data.air_quality === 99) return;
+    apis.controlDevice(data.id, user.id, { air_quality }).then(({ data }) => {
+      if (data.includes('air_quality')) {
+        setDeviceList(deviceList.map(d => {
+          return { ...d, ...(d.id === deviceId && { air_quality: 99 }) };
         }));
       }
     });
@@ -98,6 +109,9 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
     });
   }
 
+  useEffect(() => {
+    console.log('data :: ',data)
+  },[data])
   return (
     <div>
       <Box align="row">
@@ -118,26 +132,26 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
         </div>
       </Box>
       <Box align="row">
-        <label>모드 선택</label>
+        <label>제균 동작</label>
         <div className="option-list">
           <DeviceStatusOption
             {...(data.power !== 1) && { noPower: true }}
             active={data.mode === 1 && data.power === 1}
-            text={data.mode === 99 ? 'pending...' : '제균'}
+            text={data.mode === 99 ? 'pending...' : 'ON'}
             onClick={() => onClickMode(1)}
           />
           {data.mode !== 99 &&
             <DeviceStatusOption
               {...(data.power !== 1) && { noPower: true }}
-              active={data.mode === 2}
-              text={data.mode === 99 ? 'pending...' : '해충'}
+              active={data.mode === 0}
+              text={data.mode === 99 ? 'pending...' : 'OFF'}
               onClick={() => onClickMode(2)}
             />
           }
         </div>
       </Box>
       <Box align="row">
-        <label>모드 시간 선택</label>
+        <label>제균 시간 선택</label>
         <div className="option-list">
           <DeviceStatusOption
             {...(data.power !== 1) && { noPower: true }}
@@ -162,86 +176,51 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
         </div>
       </Box>
       <Box align="row">
-        <label>동작 제어</label>
+        <label>풍량 제어</label>
         <div className="option-list">
           <DeviceStatusOption
             {...(data.power !== 1) && { noPower: true }}
-            active={data.is_working === 1 && data.power === 1}
-            text={data.is_working === 99 ? 'pending...' : 'Start'}
-            onClick={() => onClickIsWorking(1)}
+            active={data.air_volume === 0 && data.power === 1}
+            text={data.air_volume === 99 ? 'pending...' : '상시'}
+            onClick={() => onClickAirVolume(0)}
           />
-          {data.is_working !== 99 &&
+          {data.air_volume !== 99 &&
             <DeviceStatusOption
               {...(data.power !== 1) && { noPower: true }}
-              active={data.is_working === 0 && data.power === 1}
-              text={data.is_working === 99 ? 'pending...' : 'Stop'}
-              onClick={() => onClickIsWorking(0)}
+              active={data.air_volume === 1 && data.power === 1}
+              text={data.air_volume === 99 ? 'pending...' : '강'}
+              onClick={() => onClickAirVolume(1)}
             />
+          }
+          {data.air_volume !== 99 &&
+          <DeviceStatusOption
+              {...(data.power !== 1) && { noPower: true }}
+              active={data.air_volume === 2 && data.power === 1}
+              text={data.air_volume === 99 ? 'pending...' : '쾌속'}
+              onClick={() => onClickAirVolume(2)}
+          />
           }
         </div>
       </Box>
-      <Box align="column">
-        <label>공간 제균</label>
+      <Box align="row">
+        <label>공기질</label>
         <div className="option-list">
+          {data.air_quality !== 99 &&
           <DeviceStatusOption
             {...(data.power !== 1) && { noPower: true }}
-            active={false}
+            active={data.air_quality === 1 && data.power === 1}
             // text="1시간"
-            text={(data.mode === 99 || data.mode_time === 99) ? 'pending...' : '1시간'}
-            onClick={() => onClickRmAreaBacteria(1)}
+            text={data.air_quality === 99 ? 'pending...' : 'ON'}
+            onClick={() => onClickAirQuality(1)}
           />
-          {(data.mode !== 99 && data.mode_time !== 99) && <>
-            <DeviceStatusOption
-              {...(data.power !== 1) && { noPower: true }}
-              active={false}
-              text="2시간"
-              onClick={() => onClickRmAreaBacteria(2)}
-            />
-            <DeviceStatusOption
-              {...(data.power !== 1) && { noPower: true }}
-              active={false}
-              text="연속"
-              onClick={() => onClickRmAreaBacteria(0)}
-            />
-            <DeviceStatusOption
-              {...(data.power !== 1) && { noPower: true }}
-              active={false}
-              text="수동"
-              onClick={() => onClickRmAreaBacteria(-1)}
-            />
-          </>}
-        </div>
-      </Box>
-      <Box align="column">
-        <label>해충방제</label>
-        <div className="option-list">
+          }
           <DeviceStatusOption
-            {...(data.power !== 1) && { noPower: true }}
-            active={false}
-            // text="1시간"
-            text={(data.mode === 99 || data.mode_time === 99) ? 'pending...' : '1시간'}
-            onClick={() => onClickPestControl(1)}
+              {...(data.power !== 1) && { noPower: true }}
+              active={data.air_quality === 0 && data.power === 1}
+              // text="1시간"
+              text={data.air_quality === 99 ? 'pending...' : 'OFF'}
+              onClick={() => onClickAirQuality(0)}
           />
-          {(data.mode !== 99 && data.mode_time !== 99) && <>
-            <DeviceStatusOption
-              {...(data.power !== 1) && { noPower: true }}
-              active={false}
-              text="2시간"
-              onClick={() => onClickPestControl(2)}
-            />
-            <DeviceStatusOption
-              {...(data.power !== 1) && { noPower: true }}
-              active={false}
-              text="연속"
-              onClick={() => onClickPestControl(0)}
-            />
-            <DeviceStatusOption
-              {...(data.power !== 1) && { noPower: true }}
-              active={false}
-              text="수동"
-              onClick={() => onClickPestControl(-1)}
-            />
-          </>}
         </div>
       </Box>
     </div>

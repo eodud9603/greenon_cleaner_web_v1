@@ -40,7 +40,7 @@ const ControlDevice = () => {
 
   const handleClick = async (key: string, value: any) => {
     if (!user) return;
-    
+
     let temp = deviceList.map(d => ({ ...d }));
 
     for (let i = 0; i < temp.length; i++) {
@@ -48,12 +48,12 @@ const ControlDevice = () => {
       if (temp[i][key] === 99 || temp[i][key] === value) {
         continue;
       }
-      
+
       await apis.controlDevice(temp[i].id, user.id, { [key]: value }).then(({ data }) => {
         if (data.includes(key)) temp[i][key] = 99;
       });
     }
-    
+
     setDeviceList(temp);
     setToast({ open: true, message: '전체 디바이스에 명령이 전달되었습니다.', type: 'info' })
   };
@@ -68,14 +68,14 @@ const ControlDevice = () => {
         </div>
       </Row>
       <Row>
-        <p>모드 선택</p>
+        <p>제균 동작</p>
         <div className="option-list">
-          <Button onClick={() => handleClick("mode", 1)}>제균</Button>
-          <Button onClick={() => handleClick("mode", 2)}>해충</Button>
+          <Button onClick={() => handleClick("mode", 1)}>ON</Button>
+          <Button onClick={() => handleClick("mode", 0)}>OFF</Button>
         </div>
       </Row>
       <Row>
-        <p>모드 시간 선택</p>
+        <p>제균 시간 선택</p>
         <div className="option-list">
           <Button onClick={() => handleClick("mode_time", 0)}>
             연속
@@ -85,13 +85,27 @@ const ControlDevice = () => {
         </div>
       </Row>
       <Row style={{ border: "none" }}>
-        <p>동작 제어</p>
+        <p>풍량 제어</p>
         <div className="option-list">
-          <Button onClick={() => handleClick("is_working", 1)}>
-            Start
+          <Button onClick={() => handleClick("air_volume", 0)}>
+            상시
           </Button>
-          <Button onClick={() => handleClick("is_working", 0)}>
-            Stop
+          <Button onClick={() => handleClick("air_volume", 1)}>
+            강
+          </Button>
+          <Button onClick={() => handleClick("air_volume", 2)}>
+            쾌속
+          </Button>
+        </div>
+      </Row>
+      <Row style={{ border: "none" }}>
+        <p>공기질</p>
+        <div className="option-list">
+          <Button onClick={() => handleClick("air_quality", 1)}>
+            ON
+          </Button>
+          <Button onClick={() => handleClick("air_quality", 0)}>
+            OFF
           </Button>
         </div>
       </Row>

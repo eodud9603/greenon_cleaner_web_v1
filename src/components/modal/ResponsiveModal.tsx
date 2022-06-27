@@ -10,7 +10,7 @@ import {
   ControlMode,
   ControlMove,
   ControlPower,
-  ControlTime,
+  ControlAirVolume,
   SortDevice,
   InfoDevice,
   UpdateDevice
@@ -79,7 +79,7 @@ const ResponsiveModal = () => {
       case "controlDevice": case "controlMove": return "동작 제어";
       case "controlPower": return "전원";
       case "controlMode": return "모드";
-      case "controlTime": return "시간";
+      case "controlAirVolume": return "풍량";
       case "infoDevice": return modal.infoDevice.title;
       case "updateDevice": return '제품정보 수정';
       case "error": return "제품번호가 확인되지 않습니다";
@@ -125,8 +125,8 @@ const ModalContent = ({ type }: { type: /* ModalType */any }) => {
       return <ControlPower device_id={modal.targetDeviceId} />;
     case "controlMode":
       return <ControlMode device_id={modal.targetDeviceId} />;
-    case "controlTime":
-      return <ControlTime device_id={modal.targetDeviceId} />;
+    case "controlAirVolume":
+      return <ControlAirVolume device_id={modal.targetDeviceId} />;
     case "infoDevice":
       return <InfoDevice title={modal.infoDevice.title}/>;
     case "updateDevice":

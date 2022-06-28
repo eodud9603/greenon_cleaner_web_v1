@@ -25,10 +25,10 @@ const ControlMode = ({ device_id }: { device_id: string }) => {
     if (!user) return;
     apis.controlDevice(device_id, user.id, { mode,mode_time }).then(({ data }) => {
         console.log('mode :: ',data)
-      if (data.includes('mode') && data.includes('mode') && data.includes('air_quality')) {
+      if (data.includes('mode') && data.includes('mode')) {
         setModal({ ...modal, visible: false });
         setDeviceList(deviceList.map(d => {
-          return { ...d, ...(d.id === device_id && { mode: 99, mode_time: 99,air_quality: 99 }) };
+          return { ...d, ...(d.id === device_id && { mode: 99, mode_time: 99 }) };
         }));
       }
     });

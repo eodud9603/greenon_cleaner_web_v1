@@ -48,11 +48,10 @@ const ControlMove = () => {
         continue;
       }
 
-      await apis.controlDevice(temp[i].id, user.id, { mode: 1, mode_time, air_quality: 1 }).then(({ data }) => {
-        if (data.includes('mode') && data.includes('mode_time') && data.includes('air_quality')) {
+      await apis.controlDevice(temp[i].id, user.id, { mode: 1, mode_time }).then(({ data }) => {
+        if (data.includes('mode') && data.includes('mode_time')) {
           temp[i].mode = 99;
           temp[i].mode_time = 99;
-          temp[i].air_quality = 99;
         }
       });
     }
@@ -115,7 +114,7 @@ const ControlMove = () => {
           <Button onClick={() => onClickAirControl(0)}>상시</Button>
           <Button onClick={() => onClickAirControl(1)}>강</Button>
           <Button onClick={() => onClickAirControl(2)}>쾌속</Button>
-          <Button onClick={() => onClickAirControl(1)}>공기질</Button>
+          <Button onClick={() => onClickAirControl(-1)}>공기질</Button>
           {/*<Button onClick={() => onClickPestControl(-1)}>수동</Button>*/}
         </div>
       </ColBox>

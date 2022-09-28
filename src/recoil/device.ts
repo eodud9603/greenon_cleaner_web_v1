@@ -14,16 +14,12 @@ export type DeviceType = {
    status: DeviceStatusType[]
 };
 export type DeviceStatusType = {
-   particulate_matter: number; // 미세먼지
    temperature: number; // 온도
    humidity: number; // 습도
-   bio_aerosol: number; // 바이오 에어로졸
-   air_quality: number; // 공기질
-   food_poisoning: number; // 식중독 지수
-   hydrogen_sulfide: number;
-   ammonia: number;
+   pm25: number; // 미세먼지
    voc: number;
    co2: number;
+   cibai: number; // 바이오에어로졸
    createdAt: string;
 };
 const DeviceState = atom<DeviceType[]>({

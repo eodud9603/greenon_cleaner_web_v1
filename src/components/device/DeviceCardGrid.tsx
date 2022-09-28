@@ -76,30 +76,31 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
   },[])
   return (
     <Grid>
+        <GridItem style={{ marginBottom: 20 }}>
+            <label>온도</label>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.temperature + '°C' : '-'}</p>
+        </GridItem>
+        <GridItem style={{ marginBottom: 20 }}>
+            <label>습도</label>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.humidity + '%' : '-'}</p>
+        </GridItem>
+        <GridItem style={{ marginBottom: 20 }}>
+            <label>미세먼지(PM2.5)</label>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.pm25 : '-'}</p>
+        </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>바이오에어로졸</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.bio_aerosol : '-'}</p>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.cibai : '-'}</p>
       </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
-        <label>공기질</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.air_quality : '-'}</p>
+        <label>VOC</label>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.voc : '-'}</p>
       </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
-        <label>미세먼지(PM2.5)</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.particulate_matter : '-'}</p>
+        <label>CO2</label>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.co2 : '-'}</p>
       </GridItem>
-      <GridItem style={{ marginBottom: 20 }}>
-        <label>식중독지수</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.food_poisoning : '-'}</p>
-      </GridItem>
-      <GridItem style={{ marginBottom: 20 }}>
-        <label>온도</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.temperature + '°C' : '-'}</p>
-      </GridItem>
-      <GridItem style={{ marginBottom: 20 }}>
-        <label>습도</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.humidity + '%' : '-'}</p>
-      </GridItem>
+
       <GridItem style={{ marginRight: 8 }}>
         <label>전원</label>
         <Button

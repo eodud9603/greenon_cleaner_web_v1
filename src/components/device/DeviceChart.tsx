@@ -120,21 +120,42 @@ const DeviceChart = ({ id }: { id:string }) => {
       <h5>누적데이터</h5>
       <ButtonGroup>
         <Button
-          name="bio_aerosol"
-          active={active.sensor === "bio_aerosol"}
+          name="cibai"
+          active={active.sensor === "cibai"}
           onClick={handleClick}
           // style={{ marginRight: 5 }}
         >
           바이오에어로졸지수
         </Button>
         <Button
-          name="air_quality"
-          active={active.sensor === "air_quality"}
-          onClick={handleClick}
-          // style={{ marginRight: 5 }}
+            name="voc"
+            active={active.sensor === "voc"}
+            onClick={handleClick}
         >
-          공기질지수
+          VOC
         </Button>
+        <Button
+            name="co2"
+            active={active.sensor === "co2"}
+            onClick={handleClick}
+        >
+          CO2
+        </Button>
+        <Button
+            name="pm25"
+            active={active.sensor === "pm25"}
+            onClick={handleClick}
+        >
+          미세먼지지수(PM2.5)
+        </Button>
+        {/*<Button*/}
+        {/*  name=""*/}
+        {/*  active={active.sensor === "air_quality"}*/}
+        {/*  onClick={handleClick}*/}
+        {/*  // style={{ marginRight: 5 }}*/}
+        {/*>*/}
+        {/*  공기질지수*/}
+        {/*</Button>*/}
         {/*<Button*/}
         {/*  name="food_poisoning"*/}
         {/*  active={active.sensor === "food_poisoning"}*/}
@@ -143,13 +164,6 @@ const DeviceChart = ({ id }: { id:string }) => {
         {/*>*/}
         {/*  식중독지수*/}
         {/*</Button>*/}
-        <Button
-          name="particulate_matter"
-          active={active.sensor === "particulate_matter"}
-          onClick={handleClick}
-        >
-          미세먼지지수(PM2.5)
-        </Button>
         {/*<Button*/}
         {/*    name="hydrogen_sulfide"*/}
         {/*    active={active.sensor === "hydrogen_sulfide"}*/}
@@ -164,20 +178,7 @@ const DeviceChart = ({ id }: { id:string }) => {
         {/*>*/}
         {/*  암모니아*/}
         {/*</Button>*/}
-        {/*<Button*/}
-        {/*    name="voc"*/}
-        {/*    active={active.sensor === "voc"}*/}
-        {/*    onClick={handleClick}*/}
-        {/*>*/}
-        {/*  VOC*/}
-        {/*</Button>*/}
-        {/*<Button*/}
-        {/*    name="co2"*/}
-        {/*    active={active.sensor === "co2"}*/}
-        {/*    onClick={handleClick}*/}
-        {/*>*/}
-        {/*  CO2*/}
-        {/*</Button>*/}
+
       </ButtonGroup>
       <ButtonGroup>
         <Button

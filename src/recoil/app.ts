@@ -3,7 +3,7 @@ import { atom } from 'recoil';
 export type AppStateType = {
    loading: boolean;
    location: string;
-   particulate_matter: [string, string]
+   pm25: [string, string]
 };
 
 const AppState = atom<AppStateType>({
@@ -11,7 +11,7 @@ const AppState = atom<AppStateType>({
    default: {
       loading: false,
       location: '',
-      particulate_matter: ['맑음', '2.5PM']
+      pm25: ['맑음', '2.5PM']
    }
 });
 

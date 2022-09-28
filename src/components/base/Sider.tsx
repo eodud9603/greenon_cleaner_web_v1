@@ -80,8 +80,8 @@ const Sider = () => {
       <Box>
         <label>날씨 미세먼지</label>
         <Space>
-          <p style={{ fontSize: 14, color: "#007ba8" }}>{app.particulate_matter[0]}</p>
-          <p style={{ fontSize: 14, color: "#007ba8" }}>{app.particulate_matter[1]}</p>
+          <p style={{ fontSize: 14, color: "#007ba8" }}>{app.pm25[0]}</p>
+          <p style={{ fontSize: 14, color: "#007ba8" }}>{app.pm25[1]}</p>
         </Space>
       </Box>
       <ButtonGroup>

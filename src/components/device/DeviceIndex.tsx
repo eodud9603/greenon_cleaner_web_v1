@@ -48,19 +48,19 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
       <ContainerRow>
         <CircularProgress
           onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"바이오에어로졸지수"}})}
-          title="바이오에어로졸지수"
-          progress={data.bio_aerosol}
+          title="바이오에에로졸지수"
+          progress={data.cibai}
           // color="#007cba"
-          color={data.bio_aerosol <= 32.5 ? '#00c4ff' : data.bio_aerosol <= 45.5 ? '#00baba' : data.bio_aerosol <= 68 ? '#ffc400' : 68 < data.bio_aerosol && '#ff0000'}
-          text={data.bio_aerosol <= 32.5 ? '좋음' : data.bio_aerosol <= 45.5 ? '보통' : data.bio_aerosol <= 68 ? '나쁨' : 68 <  data.bio_aerosol && '매우나쁨'}
+          color={data.cibai <= 32.5 ? '#00c4ff' : data.cibai <= 45.5 ? '#00baba' : data.cibai <= 68 ? '#ffc400' : 68 < data.cibai && '#ff0000'}
+          text={data.cibai <= 32.5 ? '좋음' : data.cibai <= 45.5 ? '보통' : data.cibai <= 68 ? '나쁨' : 68 <  data.cibai && '매우나쁨'}
         />
         <div style={{width:20}}/>
         <CircularProgress
-            onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"공기질지수"}})}
-          title="공기질지수"
-          progress={data.air_quality}
-          color={data.air_quality <= 50 ? '#00c4ff' : data.air_quality <= 100 ? '#00baba' : data.air_quality <= 250 ? '#ffc400' : 250 < data.air_quality && '#ff0000'}
-          text={data.air_quality <= 50 ? '좋음' : data.air_quality <= 100 ? '보통' : data.air_quality <= 250 ? '나쁨' : 250 < data.air_quality && '매우나쁨'}
+            onClick={() => setModal({ ...modal, visible: true ,type:'infoDevice',infoDevice:{ title:"미세먼지지수"}})}
+          title="미세먼지지수"
+          progress={data.pm25}
+          color={data.pm25 <= 50 ? '#00c4ff' : data.pm25 <= 100 ? '#00baba' : data.pm25 <= 250 ? '#ffc400' : 250 < data.pm25 && '#ff0000'}
+          text={data.pm25 <= 50 ? '좋음' : data.pm25 <= 100 ? '보통' : data.pm25 <= 250 ? '나쁨' : 250 < data.pm25 && '매우나쁨'}
         />
         {/*00baba*/}
         {/*<CircularProgress*/}
@@ -76,7 +76,7 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
           <Icon1 />
           <InlineCol>
             <label style={{ color: "#8b8b8b" }}>미세먼지(PM2.5)</label>
-            <p style={{ fontSize: 14 }}>{data.particulate_matter}PM</p>
+            <p style={{ fontSize: 14 }}>{data.pm25}PM</p>
           </InlineCol>
         </InlineRow>
         <InlineRow>

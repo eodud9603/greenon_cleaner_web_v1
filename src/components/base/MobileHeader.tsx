@@ -45,13 +45,13 @@ export const Location = () => {
 };
 
 export const Weather = () => {
-  const { particulate_matter } = useRecoilValue(AppState);
+  const { pm25 } = useRecoilValue(AppState);
   // const { etc } = useStore();
 
   return (
     <Space>
       <SunnyIcon />
-      {<p>{particulate_matter[0]}</p>}
+      {<p>{pm25[0]}</p>}
     </Space>
   );
 };

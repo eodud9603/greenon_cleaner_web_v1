@@ -70,30 +70,33 @@ const ControlDevice = () => {
       <Row>
         <p>제균 동작</p>
         <div className="option-list">
-          <Button onClick={() => handleClick("mode", 1)}>ON</Button>
+          <Button onClick={() => handleClick("mode", 2)}>ON</Button>
           <Button onClick={() => handleClick("mode", 0)}>OFF</Button>
         </div>
       </Row>
       <Row>
         <p>제균 시간 선택</p>
         <div className="option-list">
-          <Button onClick={() => handleClick("mode_time", 0)}>
-            연속
+          <Button onClick={() => handleClick("mode_time", 1)}>
+            1
           </Button>
-          <Button onClick={() => handleClick("mode_time", 1)}>1</Button>
           <Button onClick={() => handleClick("mode_time", 2)}>2</Button>
+          <Button onClick={() => handleClick("mode_time", 3)}>3</Button>
         </div>
       </Row>
       <Row style={{ border: "none" }}>
         <p>풍량 제어</p>
         <div className="option-list">
           <Button onClick={() => handleClick("air_volume", 0)}>
-            상시
+            취침
           </Button>
           <Button onClick={() => handleClick("air_volume", 1)}>
-            강
+            상시
           </Button>
           <Button onClick={() => handleClick("air_volume", 2)}>
+            강속
+          </Button>
+          <Button onClick={() => handleClick("air_volume", 3)}>
             쾌속
           </Button>
         </div>
@@ -101,10 +104,10 @@ const ControlDevice = () => {
       <Row style={{ border: "none" }}>
         <p>공기질</p>
         <div className="option-list">
-          <Button onClick={() => handleClick("air_quality", 1)}>
+          <Button onClick={() => handleClick("mode", 0)}>
             ON
           </Button>
-          <Button onClick={() => handleClick("air_quality", 0)}>
+          <Button onClick={() => handleClick("air_quality", 2)}>
             OFF
           </Button>
         </div>

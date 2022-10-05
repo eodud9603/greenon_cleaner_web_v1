@@ -9,7 +9,7 @@ export type DeviceType = {
    mode: number;
    mode_time: number;
    air_volume: number;
-   air_quality: number;
+   // air_quality: number;
    water_level: number | null;
    status: DeviceStatusType[]
 };

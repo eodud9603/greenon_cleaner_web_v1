@@ -48,7 +48,7 @@ const ControlMove = () => {
         continue;
       }
 
-      await apis.controlDevice(temp[i].id, user.id, { mode: 1, mode_time }).then(({ data }) => {
+      await apis.controlDevice(temp[i].id, user.id, { mode: 2, mode_time }).then(({ data }) => {
         if (data.includes('mode') && data.includes('mode_time')) {
           temp[i].mode = 99;
           temp[i].mode_time = 99;
@@ -67,13 +67,13 @@ const ControlMove = () => {
 
     for (let i = 0; i < temp.length; i++) {
 
-      if (temp[i].air_quality === 99 || temp[i].air_volume === air_volume) {
+      if (temp[i].air_volume === air_volume) {
         continue;
       }
 
-      await apis.controlDevice(temp[i].id, user.id, { air_quality: 1, air_volume }).then(({ data }) => {
-        if (data.includes('air_quality') && data.includes('air_volume')) {
-          temp[i].air_quality = 99;
+      await apis.controlDevice(temp[i].id, user.id, { air_volume }).then(({ data }) => {
+        if (data.includes('air_volume')) {
+          // temp[i].air_quality = 99;
           temp[i].air_volume = 99;
         }
       });
@@ -102,19 +102,19 @@ const ControlMove = () => {
           </Button>
           <Button
               variant="text"
-              onClick={() => onClickMode(0)}
+              onClick={() => onClickMode(3)}
           >
-            연속
+            3시간
           </Button>
         </div>
       </ColBox>
       <ColBox>
         풍량
         <div className="option-list">
-          <Button onClick={() => onClickAirControl(0)}>상시</Button>
-          <Button onClick={() => onClickAirControl(1)}>강</Button>
-          <Button onClick={() => onClickAirControl(2)}>쾌속</Button>
-          <Button onClick={() => onClickAirControl(-1)}>공기질</Button>
+          <Button onClick={() => onClickAirControl(0)}>취침</Button>
+          <Button onClick={() => onClickAirControl(1)}>상시</Button>
+          <Button onClick={() => onClickAirControl(2)}>강속</Button>
+          <Button onClick={() => onClickAirControl(3)}>쾌속</Button>
           {/*<Button onClick={() => onClickPestControl(-1)}>수동</Button>*/}
         </div>
       </ColBox>

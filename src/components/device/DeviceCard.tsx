@@ -45,9 +45,10 @@ const DeviceCard = ({ device }: { device: DeviceType }) => {
         }}
       >
         <DeviceInfo
-          title={/* device.name || '-' */device.id}
+          title={/* device.name || '-' */device.name}
           name={device.serial || '-'}
           type={device.type || '-'}
+          power={device.power}
         />
         <Space>
           <Space style={{ marginRight: 20 }}>

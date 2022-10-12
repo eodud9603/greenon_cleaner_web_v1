@@ -26,12 +26,12 @@ const GridItem = styled.div`
   }
 `;
 
-const Button = styled(MuiButton)<{ red?: string }>`
+const Button = styled(MuiButton)<{ red?: string, active?: string }>`
   width: 100%;
   background-color: ${(props) =>
-    props.red === "true" ? "#f7f7f7" : "#e5f2f8"} !important;
+    props.red === "true" ? "#f7f7f7" : props.active === 'true' ? "#e5f2f8" : "#f7f7f7"} !important;
   color: ${(props) =>
-    props.red === "true" ? "#8b8b8b" : "#007cba"} !important;
+    props.red === "true" ? "#8b8b8b" : props.active === 'true' ? '#007CBA'  : "#8b8b8b" } !important;
   padding-top: 15px !important;
   padding-bottom: 15px !important;
   border-radius: 10px !important;
@@ -102,44 +102,56 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
       </GridItem>
 
       <GridItem style={{ marginRight: 8 }}>
-        <label>전원</label>
+        <label>동작 모드 상태</label>
         <Button
           name="controlPower"
           onClick={(e) => {
             e.preventDefault();
-            handleOpenModal('controlPower', device.power);
+            // handleOpenModal('controlPower', device.power);
           }}
           red={device.power === 1 ? "false" : "true"}
+          active={device.power === 1 && device.mode === 0 ? "true" : "false"}
         >
-          {device.power === 99 ? 'pending...' : device.power === 1 ? "켜짐" : "꺼짐"}
+            공기질
+          {/*{device.power === 99 ? 'pending...' : device.power === 1 ? "켜짐" : "꺼짐"}*/}
         </Button>
       </GridItem>
       <GridItem>
-        <label>제균</label>
+        <label>
+            <div style={{height:15}}/>
+        </label>
         <Button
           name="controlMode"
           onClick={(e) => {
             e.preventDefault();
             if (device.power === 0 || device.mode === 99 || device.mode_time === 99) return;
-            handleOpenModal('controlMode', device.mode);
+            // handleOpenModal('controlMode', device.mode);
           }}
           red={device.power === 1 ? "false" : "true"}
+          active={device.power === 1 && device.mode === 1 ? "true" : "false"}
         >
-          {device.mode === 99 || device.mode_time === 99 ? 'pending...' : formatMode(device.mode+device.mode_time)}
+            풍량
+          {/*{device.mode === 99 || device.mode_time === 99 ? 'pending...' : formatMode(device.mode+device.mode_time)}*/}
+          {/*{device.mode === 99 ? 'pending...' : null}*/}
         </Button>
       </GridItem>
       <GridItem style={{ marginLeft: 8 }}>
-        <label>풍량</label>
+        <label>
+            <div style={{height:15}}/>
+        </label>
         <Button
           name="controlAirVolume"
           onClick={(e) => {
             e.preventDefault();
             if (device.power === 0 || device.air_volume === 99) return;
-            handleOpenModal('controlAirVolume', device.air_volume);
+            // handleOpenModal('controlAirVolume', device.air_volume);
           }}
           red={device.power === 1 ? "false" : "true"}
+          active={device.power === 1 && device.mode === 2 ? "true" : "false"}
         >
-          {device.air_volume === 99 ? 'pending...' : formatAirVolume(device.air_volume)}
+            제균
+          {/*{device.mode === 99 ? 'pending...' : formatAirVolume(device.air_volume)}*/}
+          {/*{device.mode === 99 ? 'pending...' : null}*/}
         </Button>
       </GridItem>
     </Grid>

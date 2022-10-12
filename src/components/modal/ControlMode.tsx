@@ -42,9 +42,9 @@ const ControlMode = ({ device_id }: { device_id: string }) => {
                   color: (device && device.mode === 1 && device.mode_time === 0) ? "#007cba" : "rgba(0,0,0,0.4)",
                   borderBottom: "1px solid #f4f4f4",
               }}
-              onClick={() => handleMode(1,0)}
+              onClick={() => handleMode(2,1)}
           >
-              연속
+              1시간
           </Button>
           <Button
               style={{
@@ -52,9 +52,9 @@ const ControlMode = ({ device_id }: { device_id: string }) => {
                   color: (device && device.mode === 1 && device.mode_time === 1) ? "#007cba" : "rgba(0,0,0,0.4)",
                   borderBottom: "1px solid #f4f4f4",
               }}
-              onClick={() => handleMode(1,1)}
+              onClick={() => handleMode(2,2)}
           >
-              1시간
+              2시간
           </Button>
           <Button
               style={{
@@ -62,19 +62,19 @@ const ControlMode = ({ device_id }: { device_id: string }) => {
                   color: (device && device.mode === 1 && device.mode_time === 2) ? "#007cba" : "rgba(0,0,0,0.4)",
                   borderBottom: "1px solid #f4f4f4",
               }}
-              onClick={() => handleMode(1,2)}
+              onClick={() => handleMode(2,3)}
           >
-              2시간
+              3시간
           </Button>
-        <Button
-          style={{
-            width: "100%",
-            color: (device && device.mode === 0 && device.mode_time === 0) ? "#007cba" : "rgba(0,0,0,0.4)",
-          }}
-          onClick={() => handleMode(0,0)}
-        >
-          OFF
-        </Button>
+        {/*<Button*/}
+        {/*  style={{*/}
+        {/*    width: "100%",*/}
+        {/*    color: (device && device.mode === 0 && device.mode_time === 0) ? "#007cba" : "rgba(0,0,0,0.4)",*/}
+        {/*  }}*/}
+        {/*  onClick={() => handleMode(0,0)}*/}
+        {/*>*/}
+        {/*  OFF*/}
+        {/*</Button>*/}
       </>
     );
   // });

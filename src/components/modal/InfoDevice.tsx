@@ -34,6 +34,7 @@ export const ParentsTitle = styled.div`
 `;
 export const ContentsContainer = styled.div`
   padding: 30px 10px 34px;
+  width: 100%;
 `;
 export const ContentsTitle = styled.p`
   font-size: 14px;
@@ -101,11 +102,14 @@ const InfoDevice = (props) => {
     let arr = useMemo(() => {
         switch (title){
             case '바이오에어로졸지수' :
-               return [0,32.5,45.5,68];
+               // return [0,32.5,45.5,68];
+               return [0,56,77,91,100];
             case '공기질지수' :
                 return [0,50,100,250];
             case '식중독지수' :
                 return [0,55,71,86];
+            case '미세먼지지수' :
+                return [1,20,30,40];
             default: return [0,0,0,0];
         }
     },[title]);
@@ -119,13 +123,14 @@ const InfoDevice = (props) => {
         <>
             {/*<Container>*/}
                 <ContentsContainer>
-                    <ContentsTitle>공기질 지수와 식중독지수 등 으로 부유미생물을 예측하여, 설치된 환경의 종합적인 대기 환경지수를 나타냄</ContentsTitle>
+                    <ContentsTitle>{title === '바이오에어로졸지수' ?
+                    '공기질 지수와 식중독지수 등 으로 부유미생물을 예측하여, 설치된 환경의 종합적인 대기 환경지수를 나타냄' : '설치된 환경의 미세먼지 (PM2.5) 수치'}</ContentsTitle>
                     <GraphNumContainer>
                         <GraphNumBox>0</GraphNumBox>
                         <GraphNumBox>{arr[1]}</GraphNumBox>
                         <GraphNumBox>{arr[2]}</GraphNumBox>
                         <GraphNumBox>{arr[3]}</GraphNumBox>
-                        {/*<GraphNumBox>100</GraphNumBox>*/}
+                        <GraphNumBox style={arr[4] ? null : {visibility:'hidden'}}>{arr[4]}</GraphNumBox>
                     </GraphNumContainer>
                     <GraphTextContainer>
                         <GraphTextBox style={{backgroundColor:'#007cba'}}>좋음</GraphTextBox>

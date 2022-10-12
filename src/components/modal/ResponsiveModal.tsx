@@ -76,10 +76,10 @@ const ResponsiveModal = () => {
     switch (modal.type) {
       case "addDevice": return "확인사항";
       case "sortDevice": return "정렬";
-      case "controlDevice": case "controlMove": return "동작 제어";
+      case "controlDevice": case "controlMove": return "전체 제어";
       case "controlPower": return "전원";
       case "controlMode": return "모드";
-      case "controlAirVolume": return "풍량";
+      case "controlAirVolume": return "공기질";
       case "infoDevice": return modal.infoDevice.title;
       case "updateDevice": return '제품정보 수정';
       case "error": return "제품번호가 확인되지 않습니다";

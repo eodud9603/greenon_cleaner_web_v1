@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { ReactComponent as AirPuriIcon } from "../../static/icons/icon-airpuri.svg";
+import { ReactComponent as AirPuriIconGray } from "../../static/icons/icon-airpuri_gray.svg";
 
 const RowBox = styled.div`
   display: flex;
@@ -24,9 +25,10 @@ interface Props {
   title: string;
   name: string;
   type: string;
+  power?: number;
 }
 
-const DeviceInfo = ({ title, name, type }: Props) => {
+const DeviceInfo = ({ title, name, type, power }: Props) => {
   return (
     <RowBox style={{ justifyContent: "space-between" }}>
       <Title>{title}</Title>
@@ -35,7 +37,7 @@ const DeviceInfo = ({ title, name, type }: Props) => {
           <small style={{ color: "#007ba8" }}>{name}</small>
           <small style={{ color: "#007ba8" }}>{type}</small>
         </ColBox>
-        <AirPuriIcon />
+          {power === 0 ? <AirPuriIconGray/> : <AirPuriIcon  />}
       </RowBox>
     </RowBox>
   );

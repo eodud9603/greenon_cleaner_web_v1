@@ -33,36 +33,56 @@ const ControlAirVolume = ({ device_id }: { device_id: string }) => {
 
   return (
     <>
-      <Button
-        style={{
-          width: "100%",
-          color: (device && device.air_volume === 0) ? "#007cba" : "rgba(0,0,0,0.4)",
-          borderBottom: "1px solid #f4f4f4",
-        }}
-        onClick={() => handleAirVolume(0)}
-      >
-        연속
-      </Button>
-      <Button
-        style={{
-          width: "100%",
-          color: (device && device.air_volume === 1) ? "#007cba" : "rgba(0,0,0,0.4)",
-          borderBottom: "1px solid #f4f4f4",
-        }}
-        onClick={() => handleAirVolume(1)}
-      >
-        1시간
-      </Button>
-      <Button
-        style={{
-          width: "100%",
-          color: (device && device.air_volume === 2) ? "#007cba" : "rgba(0,0,0,0.4)",
-          borderBottom: "1px solid #f4f4f4",
-        }}
-        onClick={() => handleAirVolume(2)}
-      >
-        2시간
-      </Button>
+      {/*<Button*/}
+      {/*  style={{*/}
+      {/*    width: "100%",*/}
+      {/*    color: (device && device.air_volume === 0) ? "#007cba" : "rgba(0,0,0,0.4)",*/}
+      {/*    borderBottom: "1px solid #f4f4f4",*/}
+      {/*  }}*/}
+      {/*  onClick={() => handleAirVolume(0)}*/}
+      {/*>*/}
+      {/*  연속*/}
+      {/*</Button>*/}
+      {/*<Button*/}
+      {/*  style={{*/}
+      {/*    width: "100%",*/}
+      {/*    color: (device && device.air_volume === 1) ? "#007cba" : "rgba(0,0,0,0.4)",*/}
+      {/*    borderBottom: "1px solid #f4f4f4",*/}
+      {/*  }}*/}
+      {/*  onClick={() => handleAirVolume(1)}*/}
+      {/*>*/}
+      {/*  1시간*/}
+      {/*</Button>*/}
+      {/*<Button*/}
+      {/*  style={{*/}
+      {/*    width: "100%",*/}
+      {/*    color: (device && device.air_volume === 2) ? "#007cba" : "rgba(0,0,0,0.4)",*/}
+      {/*    borderBottom: "1px solid #f4f4f4",*/}
+      {/*  }}*/}
+      {/*  onClick={() => handleAirVolume(2)}*/}
+      {/*>*/}
+      {/*  2시간*/}
+      {/*</Button>*/}
+        <Button
+            style={{
+                width: "100%",
+                color: (device && device.air_volume === 0) ? "#007cba" : "rgba(0,0,0,0.4)",
+                borderBottom: "1px solid #f4f4f4",
+            }}
+            onClick={() => handleAirVolume(0)}
+        >
+            ON
+        </Button>
+        <Button
+            style={{
+                width: "100%",
+                color: (device && device.air_volume === 1) ? "#007cba" : "rgba(0,0,0,0.4)",
+                borderBottom: "1px solid #f4f4f4",
+            }}
+            onClick={() => handleAirVolume(1)}
+        >
+            OFF
+        </Button>
     </>
   );
 };

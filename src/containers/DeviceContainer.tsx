@@ -100,6 +100,7 @@ const DeviceContainer = () => {
               title={targetDevice.name || '-'}
               name={targetDevice.serial || '-'}
               type={targetDevice.type || '-'}
+              power={targetDevice.power}
             />
             <DeviceIndex
               data={deviceStatusData || {

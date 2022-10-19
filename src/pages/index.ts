@@ -11,5 +11,6 @@ export { default as Products } from './Products';
 export { default as Notice } from './Notice';
 export { default as NoticeDetail } from './NoticeDetail';
 export { default as Usage } from './Usage';
+export { default as FAQ } from './FAQ';
 export { default as Request } from './Request';
 export { default as Settings } from './Settings';

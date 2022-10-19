@@ -152,7 +152,7 @@ const MyPageContainer = () => {
               <Icon1 />
               <p>고객 지원</p>
             </Link>
-            <Link to="/request" className="tab">
+            <Link to="/faq" className="tab">
               <Icon5 />
               <p>FAQ</p>
             </Link>

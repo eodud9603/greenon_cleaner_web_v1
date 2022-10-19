@@ -15,7 +15,7 @@ import {
 } from "./containers";
 import {
   ChangePassword,
-  Company,
+  Company, FAQ,
   FindEmail,
   FindPassword,
   Login,
@@ -171,7 +171,7 @@ function App() {
           <Route path=":notice_id" element={<NoticeDetail />} />
         </Route>
         <Route path="/usage" element={<Usage />} />
-        {/*<Route path="/request" element={<Request />} />*/}
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
       <Route>

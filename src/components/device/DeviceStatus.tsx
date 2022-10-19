@@ -166,9 +166,9 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
         <div className="option-list">
           <DeviceStatusOption
               {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
-              active={data.mode_time === 1 && data.power === 1 && data.mode === 2}
-              text={data.mode_time === 99 ? 'pending...' : '1'}
-              onClick={() => onClickModeTime(1)}
+              active={data.mode_time === 3 && data.power === 1 && data.mode === 2}
+              text={data.mode_time === 99 ? 'pending...' : '3'}
+              onClick={() => onClickModeTime(3)}
           />
           {data.mode_time !== 99 && <>
             <DeviceStatusOption
@@ -179,9 +179,9 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
             />
             <DeviceStatusOption
                 {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
-                active={data.mode_time === 3 && data.power === 1 && data.mode === 2}
-                text={data.mode_time === 99 ? 'pending...' : '3'}
-                onClick={() => onClickModeTime(3)}
+                active={data.mode_time === 1 && data.power === 1 && data.mode === 2}
+                text={data.mode_time === 99 ? 'pending...' : '1'}
+                onClick={() => onClickModeTime(1)}
             />
           </>}
           {/*<DeviceStatusOption*/}

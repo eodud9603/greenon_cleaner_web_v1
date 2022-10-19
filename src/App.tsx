@@ -171,7 +171,7 @@ function App() {
           <Route path=":notice_id" element={<NoticeDetail />} />
         </Route>
         <Route path="/usage" element={<Usage />} />
-        <Route path="/request" element={<Request />} />
+        {/*<Route path="/request" element={<Request />} />*/}
         <Route path="/settings" element={<Settings />} />
       </Route>
       <Route>

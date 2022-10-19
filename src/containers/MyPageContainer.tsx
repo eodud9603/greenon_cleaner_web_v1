@@ -78,8 +78,36 @@ const Container = styled.div`
   .box {
     width: 100%;
     height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: lightgray;
     border-radius: 10px;
+    gap: 20px;
+    .title {
+      color: red;
+      font-weight: bold;
+    }
+    .contents {
+      text-align: center;
+      font-size: 14px;
+    }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      width: 70%;
+      
+      .btn {
+        border: 1px solid;
+        border-radius: 15px;
+        width: 80px;
+        padding: 5px;
+        text-align: center;
+        background-color: white;
+        font-size: 15px;
+      }
+    }
 
     @media (min-width: 1024px) {
       width: 335px;
@@ -108,10 +136,6 @@ const MyPageContainer = () => {
         <Division />
         <div className="flex-box">
           <div className="tab-grid">
-            <Link to="/company" className="tab">
-              <Icon1 />
-              <p>회사 소개</p>
-            </Link>
             <Link to="/products" className="tab">
               <Icon2 />
               <p>제품 소개</p>
@@ -122,18 +146,36 @@ const MyPageContainer = () => {
             </Link>
             <Link to="/usage" className="tab">
               <Icon4 />
-              <p>이용 방법</p>
+              <p>메뉴얼</p>
+            </Link>
+            <Link to="/company" className="tab">
+              <Icon1 />
+              <p>고객 지원</p>
             </Link>
             <Link to="/request" className="tab">
               <Icon5 />
-              <p>문의하기</p>
+              <p>FAQ</p>
             </Link>
             <Link to="/settings" className="tab">
               <Icon6 />
               <p>설정</p>
             </Link>
           </div>
-          <div className="box" />
+          <div className="box" >
+            <div className={'title'}>
+              현재위치 날씨 , 실외공기질,식중독지수
+            </div>
+            <div className={'contents'}>
+              <div>
+                현재위치 또는 주소검색 버튼을 눌러<br/>
+              </div>
+              <div>날씨,공기질, 식중독 지역을 설정해 주세요</div>
+            </div>
+            <div className={'btn-container'}>
+              <div className={'btn'}>현재위치</div>
+              <div className={'btn'}>주소검색</div>
+            </div>
+          </div>
         </div>
       </Container>
     </>

@@ -69,7 +69,7 @@ const Request = () => {
     fd.append('content', inputs.content);
     if (imgRef.current)
       fd.append('image', imgRef.current);
-    
+
     apis.createRequest(fd).then((res) => {
       if (res.status === 201 && res.data.result === true) {
         setToast({ open: true, message: '성공적으로 작성되었습니다.', type: 'success' });
@@ -112,7 +112,7 @@ const Request = () => {
 
   return (
     <>
-      <ContentHeader title="문의하기" />
+      {/*<ContentHeader title="문의하기" />*/}
       <Box>
         <TextInput
           name="username"

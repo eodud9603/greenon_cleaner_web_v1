@@ -35,11 +35,16 @@ const Thumbnail = styled.img`
   flex-shrink: 0;
 `;
 
-const Article = ({ data }: { data: any }) => {
+const Article = ({ data, number }: { data: any,number:number  }) => {
   return (
-    <ArticleBox to={`/notice/${data.id}`} state={data}>
+    <ArticleBox to={`/notice/${data.id}`} state={data} style={{backgroundColor:data.fix === 1 ? '#f7f7f7' : null}}>
       <LeftBox>
-        <p>{data.title}</p>
+        <div>
+            {data.fix === 1 && <div style={{fontSize:12,marginBottom:10}}>전체공지</div>}
+            <div style={{display:'flex',}}>
+              {data.fix === 0 && <div style={{fontSize:12,marginBottom:10,textAlign:'center',marginRight:5,position:'relative',top:2}}>{number + ' |'}</div>}<p>{data.title}</p>
+            </div>
+        </div>
         <BottomBox>
           <label>관리자</label>
           <label>{moment(data.created_at).format("YYYY.MM.DD")}</label>

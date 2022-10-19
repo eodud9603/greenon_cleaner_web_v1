@@ -53,7 +53,7 @@ const Products = () => {
           <div style={{marginLeft:10}}>1. 공기청정제균기</div>
             {/*<PdfContainer obj={require('../static/menual2_2.pdf')}/>*/}
             <PdfContainer obj={{
-                url: 'http://52.79.150.136:3001/uploads/menual2_2.pdf'
+                url: 'http://localhost:3001/uploads/menual2_2.pdf'
             }}/>
       </Box>
             {/*<img src={require('../static/menual1.psd').default}/>*/}
@@ -61,7 +61,7 @@ const Products = () => {
       <Box>
           <div style={{marginLeft:10}}>2. 공간해충살균기</div>
             <PdfContainer obj={{
-                url: 'http://52.79.150.136:3001/uploads/menual2_1.pdf'
+                url: 'http://localhost:3001/uploads/menual2_1.pdf'
             }}/>
       </Box>
       {/*<Box>3. 공간해충살균기 (업소용)</Box>*/}

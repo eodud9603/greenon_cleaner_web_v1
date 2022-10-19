@@ -48,7 +48,7 @@ const Article = ({ data, number }: { data: any,number:number  }) => {
         <BottomBox>
           <label>관리자</label>
           <label>{moment(data.created_at).format("YYYY.MM.DD")}</label>
-          <label>조회 {data.view_count}</label>
+          <label>조회 {data.view_count ? data.view_count : 0}</label>
         </BottomBox>
       </LeftBox>
       {data.photoURL ? <Thumbnail src={data.photoURL} /> : false}

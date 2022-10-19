@@ -38,7 +38,7 @@ const NoticeDetail = () => {
             <HeaderBottom>
               <div>관리자</div>
               <div>{moment(state.created_at).format("YYYY.MM.DD")}</div>
-              <div>조회 {state.view_count}</div>
+              <div>조회 {state.view_count ? state.view_count : '0'}</div>
             </HeaderBottom>
           </Header>
           <Body>

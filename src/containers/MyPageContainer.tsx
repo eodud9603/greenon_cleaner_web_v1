@@ -161,21 +161,21 @@ const MyPageContainer = () => {
               <p>설정</p>
             </Link>
           </div>
-          <div className="box" >
-            <div className={'title'}>
-              현재위치 날씨 , 실외공기질,식중독지수
-            </div>
-            <div className={'contents'}>
-              <div>
-                현재위치 또는 주소검색 버튼을 눌러<br/>
-              </div>
-              <div>날씨,공기질, 식중독 지역을 설정해 주세요</div>
-            </div>
-            <div className={'btn-container'}>
-              <div className={'btn'}>현재위치</div>
-              <div className={'btn'}>주소검색</div>
-            </div>
-          </div>
+          {/*<div className="box" >*/}
+          {/*  <div className={'title'}>*/}
+          {/*    현재위치 날씨 , 실외공기질,식중독지수*/}
+          {/*  </div>*/}
+          {/*  <div className={'contents'}>*/}
+          {/*    <div>*/}
+          {/*      현재위치 또는 주소검색 버튼을 눌러<br/>*/}
+          {/*    </div>*/}
+          {/*    <div>날씨,공기질, 식중독 지역을 설정해 주세요</div>*/}
+          {/*  </div>*/}
+          {/*  <div className={'btn-container'}>*/}
+          {/*    <div className={'btn'}>현재위치</div>*/}
+          {/*    <div className={'btn'}>주소검색</div>*/}
+          {/*  </div>*/}
+          {/*</div>*/}
         </div>
       </Container>
     </>

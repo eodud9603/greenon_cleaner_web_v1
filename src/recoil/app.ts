@@ -11,7 +11,8 @@ const AppState = atom<AppStateType>({
    default: {
       loading: false,
       location: '',
-      pm25: ['맑음', '2.5PM']
+      // pm25: ['맑음', '2.5PM']
+      pm25: ['', '']
    }
 });
 

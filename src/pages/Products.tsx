@@ -58,8 +58,8 @@ const ImgContainer = ({obj}) => {
 }
 
 const Products = () => {
-    const arr_cleaner = [require('../static/menual_1-1.png'),require('../static/menual_1-2.png')]
-    const arr = [require('../static/menual_2-1.png'),require('../static/menual_2-2.png'),]
+    const arr_cleaner = [require('../static/menual_2-1.png'),require('../static/menual_2-2.png'),]
+    const arr = [require('../static/menual_1-1.png'),require('../static/menual_1-2.png'),]
 
 
   return (

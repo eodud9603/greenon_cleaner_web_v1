@@ -50,7 +50,7 @@ export const Weather = () => {
 
   return (
     <Space>
-      <SunnyIcon />
+      {/*<SunnyIcon />*/}
       {<p>{pm25[0]}</p>}
     </Space>
   );

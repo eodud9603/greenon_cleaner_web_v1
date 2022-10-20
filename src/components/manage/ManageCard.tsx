@@ -69,19 +69,20 @@ const ManageCard = ({ data }: { data: DeviceType }) => {
 
   const handleOnDelete = (e: any) => {
     e.preventDefault();
-
+    let aa = window.confirm('해당 제품을 정말 삭제하시겠습니까?');
     if (!user) return;
 
-    apis.unregisterDevice(data.id, user.id).then(({ data }) => {
-      if (data.isSuccess && data.affected > 0) {
-        apis.getUserDevices(user.id).then(({ data }) => setDeviceList(data));
-        setModal({ ...modal, visible: false });
-        setToast({ open: true, message: '제품 삭제 완료', type: 'success' })
-      } else {
-        setToast({ open: true, message: '제품 삭제에 실패했습니다.', type: 'error' })
-      }
-    });
-
+    if(aa){
+      apis.unregisterDevice(data.id, user.id).then(({ data }) => {
+        if (data.isSuccess && data.affected > 0) {
+          apis.getUserDevices(user.id).then(({ data }) => setDeviceList(data));
+          setModal({ ...modal, visible: false });
+          setToast({ open: true, message: '제품 삭제 완료', type: 'success' })
+        } else {
+          setToast({ open: true, message: '제품 삭제에 실패했습니다.', type: 'error' })
+        }
+      });
+    }
     // device.deleteDevice(data.id);
   };
 

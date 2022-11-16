@@ -11,6 +11,7 @@ export type DeviceType = {
    air_volume: number;
    // air_quality: number;
    water_level: number | null;
+   filter: number | null;
    status: DeviceStatusType[]
 };
 export type DeviceStatusType = {

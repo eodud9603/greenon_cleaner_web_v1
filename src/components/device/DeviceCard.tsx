@@ -52,9 +52,13 @@ const DeviceCard = ({ device }: { device: DeviceType }) => {
         />
         <Space>
           <Space style={{ marginRight: 20 }}>
-            <label>수위</label>
+            <label>물보충</label>
             <p style={{ marginLeft: 10 }}>{getLevel(device.water_level)}</p>
           </Space>
+            <Space style={{ marginRight: 20 }}>
+                <label>필터교체</label>
+                <p style={{ marginLeft: 10 }}>{getLevel(device.filter)}</p>
+            </Space>
           {/*<Space>*/}
           {/*  <label>약품</label>*/}
           {/*  <p style={{ marginLeft: 10 }}>{getLevel(device.chemical_level)}</p>*/}

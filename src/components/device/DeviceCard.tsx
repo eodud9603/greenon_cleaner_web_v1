@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { DeviceInfo, DeviceCardGrid } from ".";
 import { DeviceType } from "../../recoil/device";
+import { ReactComponent as WaterDropWarning} from "../../static/icons/water-drop-warning.svg";
+import { ReactComponent as WaterDrop} from "../../static/icons/water-drop.svg";
+import { ReactComponent as HamburgerWarning} from "../../static/icons/hamburger-warning.svg";
+import { ReactComponent as Hamburger} from "../../static/icons/hamburger.svg";
 
 const DeviceCardBox = styled(Link)`
   display: inline-flex;
@@ -53,11 +57,12 @@ const DeviceCard = ({ device }: { device: DeviceType }) => {
         <Space>
           <Space style={{ marginRight: 20 }}>
             <label>물보충</label>
-            <p style={{ marginLeft: 10 }}>{getLevel(device.water_level)}</p>
+              {/*<img src={require('../../static/icons/water-drop.svg').default}/>*/}
+              {device.water_level === 1 ? <WaterDropWarning width={30} /> : <WaterDrop width={30} />}
           </Space>
             <Space style={{ marginRight: 20 }}>
                 <label>필터교체</label>
-                <p style={{ marginLeft: 10 }}>{getLevel(device.filter)}</p>
+                {device.filter === 1 ? <HamburgerWarning width={30} /> : <Hamburger width={30} />}
             </Space>
           {/*<Space>*/}
           {/*  <label>약품</label>*/}

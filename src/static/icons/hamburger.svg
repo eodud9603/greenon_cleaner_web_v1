@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <defs>
+        <style>
+            .cls-3{fill:gray;}
+        </style>
+    </defs>
+    <g data-name="그룹 3138">
+        <path data-name="사각형 1598" style="fill:none" d="M0 0h48v48H0z"/>
+        <path style="fill:gray;" d="M6 36v-3h36v3zm0-10.5v-3h36v3zM6 15v-3h36v3z"/>
+    </g>
+</svg>

@@ -49,11 +49,30 @@ const Space = styled.div`
 const MainControlBar = () => {
   const [modal, setModal] = useRecoilState(ModalState);
   const deviceList = useRecoilValue(DeviceState);
+  const sortToName = (sort) => {
+      switch (sort) {
+          case 'createdAt':
+              return '등록순'
+          case 'power':
+              return '동작중'
+          case 'water_level':
+              return '수위 낮음'
+          case 'filter':
+              return '필터 교체'
+          case 'cibai':
+              return '바비오에어로졸 지수'
+          case 'pm25':
+              return '미세먼지 지수'
+          default:
+              return '정렬'
+      }
+  }
 
   return (
     <Box>
       <SortButton onClick={() => setModal({ ...modal, visible: true, type: 'sortDevice' })}>
-        정렬
+          {/*{sortToName() ?? sortToName()}*/}
+          {modal?.sort ? sortToName(modal.sort) : '정렬'}
         <img
           src={BottomChevron}
           alt="bottom-chevron"

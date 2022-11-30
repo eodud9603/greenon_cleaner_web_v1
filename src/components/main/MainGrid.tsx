@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect, useMemo} from "react";
 import styled from "styled-components";
-import { DeviceType } from "../../recoil/device";
+import {DeviceCurrentStatusState, DeviceType} from "../../recoil/device";
 // import { IDevice } from "../../stores/device";
 import { DeviceCard } from "../device";
+import {useRecoilValue} from "recoil";
+import ModalState from "../../recoil/modal";
 
 const Grid = styled.div`
   display: grid;
@@ -11,9 +13,29 @@ const Grid = styled.div`
 `;
 
 const MainGrid = ({ data }: { data: DeviceType[] }) => {
+  const modal = useRecoilValue(ModalState);
+  const deviceStatusList = useRecoilValue(DeviceCurrentStatusState);
+  const sortData = useMemo(() => {
+    let sortArray = [];
+    if(modal?.sort === 'cibai' || modal.sort == 'pm25'){
+      for(let item in deviceStatusList){
+        data.forEach(e => {
+          if(e.id === item) {
+            sortArray.push({...e,status: deviceStatusList[item]});
+            return;
+          }
+        });
+        sortArray = sortArray.sort((a,b) => b.status[modal.sort] - a.status[modal.sort]);
+      }
+    }
+    return sortArray;
+  },[modal?.sort]);
   return (
     <Grid>
-      {data.map((dat: DeviceType) => <DeviceCard device={dat} key={dat.id} />)}
+      {modal?.sort === 'cibai' || modal?.sort === 'pm25' ?
+          sortData.map((dat: DeviceType) => <DeviceCard device={dat} key={dat.id} />)
+          : data.map((dat: DeviceType) => <DeviceCard device={dat} key={dat.id} />)
+      }
     </Grid>
   );
 };

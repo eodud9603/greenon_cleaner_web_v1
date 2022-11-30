@@ -53,7 +53,7 @@ const ControlMove = () => {
           temp[i].mode = 99;
           temp[i].mode_time = 99;
         }
-      });
+      }).catch((err) => console.log('err : ',err));
     }
 
     setDeviceList(temp);
@@ -90,19 +90,19 @@ const ControlMove = () => {
         <div className="option-list">
           <Button
             variant="text"
-            onClick={() => onClickMode(1)}
+            onClick={() => onClickMode(0)}
           >
             1시간
           </Button>
           <Button
             variant="text"
-            onClick={() => onClickMode(2)}
+            onClick={() => onClickMode(1)}
           >
             2시간
           </Button>
           <Button
               variant="text"
-              onClick={() => onClickMode(3)}
+              onClick={() => onClickMode(2)}
           >
             3시간
           </Button>

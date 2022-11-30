@@ -39,8 +39,8 @@ export const apis = {
     instance.get(`/device/user-device/${id}/status?userId=${userId}`),
   getCumulativeData: (id:string,type:string) =>
       instance.get(`/device/user-device/${id}/data?type=${type}`),
-  getDeviceConfigs: (userId:number) =>
-    instance.get(`/device/user-device/current-configs?userId=${userId}`),
+  getDeviceConfigs: (userId:number,order?:string) =>
+    instance.get(`/device/user-device/current-configs?userId=${userId}&order=${order}`),
   registerDevice: (id:string, userId:number) =>
     instance.post('/device/user-device/register', { id, userId }),
   updateDevice: (deviceId:string, name: string) =>

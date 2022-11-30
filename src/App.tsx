@@ -38,6 +38,8 @@ import AppState from "./recoil/app";
 import KakaoCallback from "./pages/KakaoCallback";
 import axios from "axios";
 import useReactNativeWebView from "./hooks/useReactNativeWebView";
+import modal from "./recoil/modal";
+import ModalState from "./recoil/modal";
 
 declare global {
   interface Window {
@@ -51,6 +53,7 @@ function App() {
   const [app, setApp] = useRecoilState(AppState);
   const [deviceList, setDeviceList] = useRecoilState(DeviceState);
   const [loadState, setLoadState] = useState(false);
+  const modal = useRecoilValue(ModalState);
   const setDeviceCurrentStatus = useSetRecoilState(DeviceCurrentStatusState);
   const user = useRecoilValue(UserState);
   const navigate = useNavigate();
@@ -115,6 +118,7 @@ function App() {
   useEffect(() => {
     if (user) {
       apis.getUserDevices(user.id).then(({ data }) => {
+        console.log('getUserDevices :: ',data)
         setDeviceList(data);
         setLoadState(true);
       });
@@ -133,10 +137,9 @@ function App() {
       const updateData = () => {
         // if (user && deviceList.length) {
           apis.getDeviceCurrentStatus(user.id).then(({ data }) => {
-            // console.log(data);
             setDeviceCurrentStatus(data);
           });
-          apis.getDeviceConfigs(user.id).then(({ data }) => {
+          apis.getDeviceConfigs(user.id,modal?.sort).then(({ data }) => {
             setDeviceList(data);
           });
         // }
@@ -152,7 +155,7 @@ function App() {
 
       return () => clearInterval(interval);
     }
-  }, [loadState, user, /* deviceList */]);
+  }, [loadState, user, /* deviceList */,modal]);
 
   return (
     <>

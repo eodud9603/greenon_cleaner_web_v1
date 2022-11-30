@@ -18,6 +18,7 @@ export type ModalStateType = {
    type: ModalType,
    targetDeviceId: string;
    infoDevice:{title:string}
+   sort?: string;
 };
 const ModalState = atom<ModalStateType>({
    key: 'ModalState',
@@ -25,7 +26,7 @@ const ModalState = atom<ModalStateType>({
       visible: false,
       type: 'addDevice',
       targetDeviceId: '',
-      infoDevice:{title:''}
+      infoDevice:{title:'',},
    }
 });
 

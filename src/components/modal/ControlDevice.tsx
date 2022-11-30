@@ -77,11 +77,11 @@ const ControlDevice = () => {
       <Row>
         <p>제균 시간 선택</p>
         <div className="option-list">
-          <Button onClick={() => handleClick("mode_time", 1)}>
+          <Button onClick={() => handleClick("mode_time", 3)}>
             1
           </Button>
           <Button onClick={() => handleClick("mode_time", 2)}>2</Button>
-          <Button onClick={() => handleClick("mode_time", 3)}>3</Button>
+          <Button onClick={() => handleClick("mode_time", 1)}>3</Button>
         </div>
       </Row>
       <Row style={{ border: "none" }}>

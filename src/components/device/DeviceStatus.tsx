@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { DeviceStatusOption } from ".";
@@ -32,9 +32,13 @@ const Box = styled.div<{ align: "row" | "column" }>`
 const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */deviceId: string, user: UserType | null }) => {
   const [app, setApp] = useRecoilState(AppState);
   const [deviceList, setDeviceList] = useRecoilState(DeviceState);
+  const modeTimeRef = useRef<number>(1);
+  const prevMode = useRef<number>(0);
 
   const data = useMemo(() => {
-    return deviceList.filter(d => d.id === deviceId)[0]
+    const filterList = deviceList.filter(d => d.id === deviceId)[0]
+    prevMode.current = filterList.mode;
+    return filterList
   }, [deviceList, deviceId]);
 
   const onClickPower = (power: number) => {
@@ -49,13 +53,38 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
   }
   const onClickMode = (mode: number) => {
     if (!user || data.mode === 99 || data.power === 0) return;
-    apis.controlDevice(data.id, user.id, { mode }).then(({ data }) => {
-      if (data.includes('mode')) {
-        setDeviceList(deviceList.map(d => {
-          return { ...d, ...(d.id === deviceId && { mode: 99 }) };
-        }));
+    if(mode === 2) {
+      if(modeTimeRef.current >= 3) modeTimeRef.current = 0;
+      if(prevMode.current === 2){
+        modeTimeRef.current += 1;
+        apis.controlDevice(data.id, user.id, { mode_time:modeTimeRef.current }).then(({ data }) => {
+          if (data.includes('mode_time')) {
+            console.log('onClickMode = 2 1 :: ',data)
+            setDeviceList(deviceList.map(d => {
+              return { ...d, ...(d.id === deviceId && { mode_time: 99 }) };
+            }));
+          }
+        });
+      } else {
+        apis.controlDevice(data.id, user.id, { mode, mode_time: 1 }).then(({ data }) => {
+          if (data.includes('mode') && data.includes('mode_time')) {
+            console.log('onClickMode = 2 2 :: ',data)
+            setDeviceList(deviceList.map(d => {
+              return { ...d, ...(d.id === deviceId && { mode: 99, mode_time: 99 }) };
+            }));
+          }
+        });
       }
-    });
+    } else {
+      prevMode.current = mode;
+      apis.controlDevice(data.id, user.id, { mode }).then(({ data }) => {
+        if (data.includes('mode')) {
+          setDeviceList(deviceList.map(d => {
+            return { ...d, ...(d.id === deviceId && { mode: 99 }) };
+          }));
+        }
+      });
+    }
   }
   const onClickModeTime = (mode_time: number) => {
     if (!user || data.mode_time === 99) return;
@@ -165,30 +194,31 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
         <label>제균 시간 선택</label>
         <div className="option-list">
           <DeviceStatusOption
-              {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
-              active={data.mode_time === 3 && data.power === 1 && data.mode === 2}
+              noPower={true}
+              active={data.mode_time === 1 && data.power === 1 && data.mode === 2}
               text={data.mode_time === 99 ? 'pending...' : '3'}
-              onClick={() => onClickModeTime(3)}
+              onClick={() => onClickModeTime(1)}
           />
           {data.mode_time !== 99 && <>
             <DeviceStatusOption
-                {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
+                noPower={true}
                 active={data.mode_time === 2 && data.power === 1 && data.mode === 2}
                 text={data.mode_time === 99 ? 'pending...' : '2'}
                 onClick={() => onClickModeTime(2)}
             />
             <DeviceStatusOption
-                {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
-                active={data.mode_time === 1 && data.power === 1 && data.mode === 2}
+                noPower={true}
+                active={data.mode_time === 3 && data.power === 1 && data.mode === 2}
                 text={data.mode_time === 99 ? 'pending...' : '1'}
-                onClick={() => onClickModeTime(1)}
+                onClick={() => onClickModeTime(3)}
             />
           </>}
           {/*<DeviceStatusOption*/}
-          {/*  {...(data.power !== 1) && { noPower: true }}*/}
-          {/*  active={data.mode_time === 0 && data.power === 1}*/}
-          {/*  text={data.mode_time === 99 ? 'pending...' : '연속'}*/}
-          {/*  onClick={() => onClickModeTime(0)}*/}
+          {/*    noPower={true}*/}
+          {/*    /!*{...(data.power !== 1 || data.mode !== 2) && { noPower: true }}*!/*/}
+          {/*    active={data.mode_time === 3 && data.power === 1 && data.mode === 2}*/}
+          {/*    text={data.mode_time === 99 ? 'pending...' : '1'}*/}
+          {/*    onClick={() => onClickModeTime(3)}*/}
           {/*/>*/}
 
         </div>

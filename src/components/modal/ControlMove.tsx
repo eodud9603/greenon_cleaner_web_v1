@@ -37,21 +37,22 @@ const ControlMove = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const onClickMode = async (mode_time:number) => {
+  const onClickMode = async (mode:number) => {
     if (!user) return;
 
     let temp = deviceList.map(d => ({ ...d }));
 
     for (let i = 0; i < temp.length; i++) {
 
-      if (temp[i].mode === 99 || temp[i].mode_time === mode_time) {
+      if (temp[i].mode === 99 || temp[i].mode_time === 99) {
         continue;
       }
 
-      await apis.controlDevice(temp[i].id, user.id, { mode: 2, mode_time }).then(({ data }) => {
-        if (data.includes('mode') && data.includes('mode_time')) {
+      await apis.controlDevice(temp[i].id, user.id, { mode: mode, mode_time:1 ,air_volume: 1,}).then(({ data }) => {
+        if (data.includes('mode') && data.includes('mode_time') && data.includes('air_volume')) {
           temp[i].mode = 99;
           temp[i].mode_time = 99;
+          temp[i].air_volume = 99;
         }
       }).catch((err) => console.log('err : ',err));
     }
@@ -60,21 +61,21 @@ const ControlMove = () => {
     setToast({ open: true, message: '전체 디바이스에 명령이 전달되었습니다.', type: 'info' })
   }
 
-  const onClickAirControl = async (air_volume:number) => {
+  const onClickPower = async (power:number) => {
     if (!user) return;
 
     let temp = deviceList.map(d => ({ ...d }));
 
     for (let i = 0; i < temp.length; i++) {
 
-      if (temp[i].air_volume === air_volume) {
+      if (temp[i].power === power) {
         continue;
       }
 
-      await apis.controlDevice(temp[i].id, user.id, { air_volume }).then(({ data }) => {
-        if (data.includes('air_volume')) {
+      await apis.controlDevice(temp[i].id, user.id, { power }).then(({ data }) => {
+        if (data.includes('power')) {
           // temp[i].air_quality = 99;
-          temp[i].air_volume = 99;
+          temp[i].power = 99;
         }
       });
     }
@@ -86,35 +87,28 @@ const ControlMove = () => {
   return (
     <>
       <ColBox>
-        제균
+        전원
         <div className="option-list">
           <Button
             variant="text"
-            onClick={() => onClickMode(0)}
+            onClick={() => onClickPower(1)}
           >
-            1시간
+            ON
           </Button>
           <Button
             variant="text"
-            onClick={() => onClickMode(1)}
+            onClick={() => onClickPower(0)}
           >
-            2시간
-          </Button>
-          <Button
-              variant="text"
-              onClick={() => onClickMode(2)}
-          >
-            3시간
+            OFF
           </Button>
         </div>
       </ColBox>
       <ColBox>
-        풍량
+        모드 선택
         <div className="option-list">
-          <Button onClick={() => onClickAirControl(0)}>취침</Button>
-          <Button onClick={() => onClickAirControl(1)}>상시</Button>
-          <Button onClick={() => onClickAirControl(2)}>강속</Button>
-          <Button onClick={() => onClickAirControl(3)}>쾌속</Button>
+          <Button onClick={() => onClickMode(0)}>공기질</Button>
+          <Button onClick={() => onClickMode(1)}>풍량</Button>
+          <Button onClick={() => onClickMode(2)}>제균</Button>
           {/*<Button onClick={() => onClickPestControl(-1)}>수동</Button>*/}
         </div>
       </ColBox>

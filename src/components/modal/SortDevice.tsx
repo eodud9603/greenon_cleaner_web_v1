@@ -42,6 +42,7 @@ const SortDevice = () => {
       <Box onClick={() => setModal({...modal,visible:false,sort:'pm25'})}>미세먼지 지수</Box>
       <Box onClick={() => setModal({...modal,visible:false,sort:'cibai'})}>바이오에어로졸 지수</Box>
       <Box onClick={() => setModal({...modal,visible:false,sort:'water_level'})}>수위 낮음</Box>
+      <Box onClick={() => setModal({...modal,visible:false,sort:'name'})}>이름순 정렬</Box>
       <Box onClick={() => setModal({...modal,visible:false,sort:'filter'})}>필터 교체</Box>
     </>
   );

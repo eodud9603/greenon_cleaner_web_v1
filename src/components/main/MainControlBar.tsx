@@ -57,6 +57,8 @@ const MainControlBar = () => {
               return '동작중'
           case 'water_level':
               return '수위 낮음'
+          case 'name':
+              return '이름'
           case 'filter':
               return '필터 교체'
           case 'cibai':

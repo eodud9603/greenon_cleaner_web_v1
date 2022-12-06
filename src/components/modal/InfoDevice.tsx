@@ -2,6 +2,7 @@ import React, {useEffect, useMemo} from "react";
 import styled from "styled-components";
 import {useRecoilState} from "recoil";
 import DeviceState, {DeviceCurrentStatusState} from "../../recoil/device";
+import ModalState from "../../recoil/modal";
 
 export const Container = styled.div`
   position: fixed;
@@ -97,6 +98,7 @@ export const SubmitBtn = styled.button`
 
 const InfoDevice = (props) => {
     const {title} = props;
+    const [modal,setModal] = useRecoilState(ModalState);
     const data = useRecoilState(DeviceState);
     const data2 = useRecoilState(DeviceCurrentStatusState);
     let arr = useMemo(() => {
@@ -138,7 +140,7 @@ const InfoDevice = (props) => {
                         <GraphTextBox style={{backgroundColor:'#ffc400'}}>나쁨</GraphTextBox>
                         <GraphTextBox style={{backgroundColor:'#ff0000'}}>매우 나쁨</GraphTextBox>
                     </GraphTextContainer>
-                    <SubmitBtn>확인</SubmitBtn>
+                    <SubmitBtn onClick={() => setModal({...modal,visible:false})}>확인</SubmitBtn>
                 </ContentsContainer>
             {/*</Container>*/}
 

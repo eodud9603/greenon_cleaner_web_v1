@@ -51,40 +51,51 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
       }
     });
   }
+  // const onClickMode = (mode: number) => {
+  //   if (!user || data.mode === 99 || data.power === 0) return;
+  //   if(mode === 2) {
+  //     if(modeTimeRef.current >= 3) modeTimeRef.current = 0;
+  //     if(prevMode.current === 2){
+  //       modeTimeRef.current += 1;
+  //       apis.controlDevice(data.id, user.id, { mode_time:modeTimeRef.current }).then(({ data }) => {
+  //         if (data.includes('mode_time')) {
+  //           console.log('onClickMode = 2 1 :: ',data)
+  //           setDeviceList(deviceList.map(d => {
+  //             return { ...d, ...(d.id === deviceId && { mode_time: 99 }) };
+  //           }));
+  //         }
+  //       });
+  //     } else {
+  //       apis.controlDevice(data.id, user.id, { mode, mode_time: 1 }).then(({ data }) => {
+  //         if (data.includes('mode') && data.includes('mode_time')) {
+  //           console.log('onClickMode = 2 2 :: ',data)
+  //           setDeviceList(deviceList.map(d => {
+  //             return { ...d, ...(d.id === deviceId && { mode: 99, mode_time: 99 }) };
+  //           }));
+  //         }
+  //       });
+  //     }
+  //   } else {
+  //     prevMode.current = mode;
+  //     apis.controlDevice(data.id, user.id, { mode }).then(({ data }) => {
+  //       if (data.includes('mode')) {
+  //         setDeviceList(deviceList.map(d => {
+  //           return { ...d, ...(d.id === deviceId && { mode: 99 }) };
+  //         }));
+  //       }
+  //     });
+  //   }
+  // }
+
   const onClickMode = (mode: number) => {
     if (!user || data.mode === 99 || data.power === 0) return;
-    if(mode === 2) {
-      if(modeTimeRef.current >= 3) modeTimeRef.current = 0;
-      if(prevMode.current === 2){
-        modeTimeRef.current += 1;
-        apis.controlDevice(data.id, user.id, { mode_time:modeTimeRef.current }).then(({ data }) => {
-          if (data.includes('mode_time')) {
-            console.log('onClickMode = 2 1 :: ',data)
-            setDeviceList(deviceList.map(d => {
-              return { ...d, ...(d.id === deviceId && { mode_time: 99 }) };
-            }));
-          }
-        });
-      } else {
-        apis.controlDevice(data.id, user.id, { mode, mode_time: 1 }).then(({ data }) => {
-          if (data.includes('mode') && data.includes('mode_time')) {
-            console.log('onClickMode = 2 2 :: ',data)
-            setDeviceList(deviceList.map(d => {
-              return { ...d, ...(d.id === deviceId && { mode: 99, mode_time: 99 }) };
-            }));
-          }
-        });
+    apis.controlDevice(data.id, user.id, { mode }).then(({ data }) => {
+      if (data.includes('mode')) {
+        setDeviceList(deviceList.map(d => {
+          return { ...d, ...(d.id === deviceId && { mode: 99 }) };
+        }));
       }
-    } else {
-      prevMode.current = mode;
-      apis.controlDevice(data.id, user.id, { mode }).then(({ data }) => {
-        if (data.includes('mode')) {
-          setDeviceList(deviceList.map(d => {
-            return { ...d, ...(d.id === deviceId && { mode: 99 }) };
-          }));
-        }
-      });
-    }
+    });
   }
   const onClickModeTime = (mode_time: number) => {
     if (!user || data.mode_time === 99) return;
@@ -194,20 +205,20 @@ const DeviceStatus = ({ /* data, */deviceId, user }: { /* data: DeviceType, */de
         <label>제균 시간 선택</label>
         <div className="option-list">
           <DeviceStatusOption
-              noPower={true}
+              {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
               active={data.mode_time === 1 && data.power === 1 && data.mode === 2}
               text={data.mode_time === 99 ? 'pending...' : '3'}
               onClick={() => onClickModeTime(1)}
           />
           {data.mode_time !== 99 && <>
             <DeviceStatusOption
-                noPower={true}
+                {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
                 active={data.mode_time === 2 && data.power === 1 && data.mode === 2}
                 text={data.mode_time === 99 ? 'pending...' : '2'}
                 onClick={() => onClickModeTime(2)}
             />
             <DeviceStatusOption
-                noPower={true}
+                {...(data.power !== 1 || data.mode !== 2) && { noPower: true }}
                 active={data.mode_time === 3 && data.power === 1 && data.mode === 2}
                 text={data.mode_time === 99 ? 'pending...' : '1'}
                 onClick={() => onClickModeTime(3)}

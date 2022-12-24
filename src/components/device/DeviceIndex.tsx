@@ -76,21 +76,21 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
           <Icon1 />
           <InlineCol>
             <label style={{ color: "#8b8b8b" }}>미세먼지(PM2.5)</label>
-            <p style={{ fontSize: 14 }}>{data.pm25}</p>
+            <p style={{ fontSize: 14 }}>{data.pm25}ug/m^3</p>
           </InlineCol>
         </InlineRow>
         <InlineRow>
           <Icon2 />
           <InlineCol>
             <label style={{ color: "#8b8b8b" }}>온도</label>
-            <p style={{ fontSize: 14 }}>{data.temperature}°C</p>
+            <p style={{ fontSize: 14 }}>{(data.temperature-500)/10}°C</p>
           </InlineCol>
         </InlineRow>
         <InlineRow>
           <Icon3 />
           <InlineCol>
             <label style={{ color: "#8b8b8b" }}>습도</label>
-            <p style={{ fontSize: 14 }}>{data.humidity}%</p>
+            <p style={{ fontSize: 14 }}>{data.humidity/10}%</p>
           </InlineCol>
         </InlineRow>
       </Row>

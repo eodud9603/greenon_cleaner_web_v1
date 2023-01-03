@@ -78,7 +78,7 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
     <Grid>
         <GridItem style={{ marginBottom: 20 }}>
             <label>온도</label>
-            <p style={{ marginTop: 5 }}>{deviceStatus ? (deviceStatus.temperature-500)/10 + '°C' : '-'}</p>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? (deviceStatus.temperature)/10 + '°C' : '-'}</p>
         </GridItem>
         <GridItem style={{ marginBottom: 20 }}>
             <label>습도</label>
@@ -86,7 +86,7 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
         </GridItem>
         <GridItem style={{ marginBottom: 20 }}>
             <label>미세먼지(PM2.5)</label>
-            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.pm25 + 'ug/m^3' : '-'}</p>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.pm25 + 'ug/㎥' : '-'}</p>
         </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>바이오에어로졸</label>

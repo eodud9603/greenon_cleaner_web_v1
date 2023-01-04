@@ -83,7 +83,7 @@ const DeviceIndex = ({ data }: { data: DeviceStatusType }) => {
           <Icon2 />
           <InlineCol>
             <label style={{ color: "#8b8b8b" }}>온도</label>
-            <p style={{ fontSize: 14 }}>{(data.temperature-500)/10}°C</p>
+            <p style={{ fontSize: 14 }}>{(data.temperature)/10}°C</p>
           </InlineCol>
         </InlineRow>
         <InlineRow>

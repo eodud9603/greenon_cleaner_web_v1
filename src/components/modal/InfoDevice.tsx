@@ -105,7 +105,7 @@ const InfoDevice = (props) => {
         switch (title){
             case '바이오에어로졸지수' :
                // return [0,32.5,45.5,68];
-               return [0,56,77,91,100];
+               return [0,1,2,3];
             case '공기질지수' :
                 return [0,50,100,250];
             case '식중독지수' :
@@ -115,11 +115,6 @@ const InfoDevice = (props) => {
             default: return [0,0,0,0];
         }
     },[title]);
-
-    // useEffect(()=>{
-    //     console.log(data);
-    //     console.log(data2)
-    // },[title])
 
     return (
         <>

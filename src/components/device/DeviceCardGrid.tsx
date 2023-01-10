@@ -78,7 +78,7 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
     <Grid>
         <GridItem style={{ marginBottom: 20 }}>
             <label>온도</label>
-            <p style={{ marginTop: 5 }}>{deviceStatus ? (deviceStatus.temperature-500)/10 + '°C' : '-'}</p>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? (deviceStatus.temperature)/10 + '°C' : '-'}</p>
         </GridItem>
         <GridItem style={{ marginBottom: 20 }}>
             <label>습도</label>
@@ -90,11 +90,11 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
         </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>바이오에어로졸</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.cibai : '-'}</p>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.cibai : '-'} level</p>
       </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>VOC</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.voc : '-'}</p>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.voc : '-'} level</p>
       </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>CO2</label>

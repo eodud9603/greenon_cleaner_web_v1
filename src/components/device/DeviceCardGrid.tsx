@@ -86,15 +86,15 @@ const DeviceCardGrid = ({ device }: { device: DeviceType }) => {
         </GridItem>
         <GridItem style={{ marginBottom: 20 }}>
             <label>미세먼지(PM2.5)</label>
-            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.pm25 + 'ug/m^3' : '-'}</p>
+            <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.pm25 + 'ug/㎥' : '-'}</p>
         </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>바이오에어로졸</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.cibai : '-'} level</p>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.cibai+' level' : '-'}</p>
       </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>VOC</label>
-        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.voc : '-'} level</p>
+        <p style={{ marginTop: 5 }}>{deviceStatus ? deviceStatus.voc+' level' : '-'}</p>
       </GridItem>
       <GridItem style={{ marginBottom: 20 }}>
         <label>CO2</label>
